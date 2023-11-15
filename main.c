@@ -174,7 +174,6 @@ void addTask(char * title, char * description, char * start_time, char * end_tim
     // Print the task after it has been added.
     printTask(&new_task);
 }
-
 int checkTitle(char * raw_title) {
     int len = strlen(raw_title);
     
