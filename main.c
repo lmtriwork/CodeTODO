@@ -44,8 +44,18 @@ void printUnsupportedTime(struct Task * task) {
 
 // ------ Begin: Student Answer ------
 enum CommandType getCommandType(char * command) {
-    // TODO
-    return INVALID;
+    if (strncmp(command, "ADD", 3) == 0)
+        return ADD;
+    else if (strncmp(command, "EDIT", 4) == 0)
+        return EDIT;
+    else if (strncmp(command, "SHOW", 4) == 0)
+        return SHOW;
+    else if (strncmp(command, "DELETE", 6) == 0)
+        return DELETE;
+    else if (strncmp(command, "QUIT", 4) == 0)
+        return QUIT;
+    else 
+        return INVALID;
 }
 
 // Other functions
