@@ -152,7 +152,7 @@ int checkTime(char* raw_time) {
 }
 // Test the functions
 int main() {
-    char sample_input[] = "ADD [Course Intro to Programming] [Room 701-H6] [07:00|01/10/2023-12:00|01/10/2023]";
+    char sample_input[] = "ADD [Course Intro to Programming] [Room 701-H6] [07:00|03/10/2023-12:00|01/10/2023]";
     char raw_title[50];
     char raw_description[50];
     char raw_time[50];
