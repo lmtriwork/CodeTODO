@@ -63,36 +63,36 @@ void getTimeFromAdd(char* command, char* out_time) {
     }
 }
 
-int checkTitle(char* raw_title) {
-    int length = strlen(raw_title);
+int checkTitle(char * raw_title) {
+    // Check if the title length is within the allowed limit
+    if (strlen(raw_title) > MAX_LENGTH_TITLE) {
+        return strlen(raw_title); // Return the current length of the title
+    }
+    // Check if the title starts or ends with a whitespace character
+    if (raw_title[0] == ' ') {
+        return 0; // Error: Title starts or ends with a whitespace character
+    } else if (raw_title[strlen(raw_title) - 1] == ' ') {
+        return strlen(raw_title);
+    }
+    
+    // Define allowed characters for the title
+    char allowedCharacters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ,.-:|/";
 
-    // Check maximum length condition
-    if (length > MAX_LENGTH_TITLE) {
-        return length;
+    // Check if the title contains only allowed characters
+    for (int i = 0; raw_title[i] != '\0'; i++) {
+        int isValidChar = 0;
+        for (int j = 0; allowedCharacters[j] != '\0'; j++) {
+            if (raw_title[i] == allowedCharacters[j]) {
+                isValidChar = 1;
+                break;
+            }
+        }
+        if (!isValidChar) {
+            return i; // Return the position of the first invalid character
+        }
     }
 
-    // Check other conditions
-    for (int i = 0; i < length; i++) {
-        char ch = raw_title[i];
-
-        // Check if it's a valid character
-        if (!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') ||
-              (ch >= '0' && ch <= '9') || ch == ' ' || ch == ',' ||
-              ch == '.' || ch == '-' || ch == ':' ||
-              ch == '|' || ch == '/')) {
-            return i;
-        }
-
-        // Check for leading or trailing whitespace
-        if (i == 0 && ch == ' ') {
-            return i;
-        }
-        if (i == length - 1 && ch == ' ') {
-            return i;
-        }
-    }
-
-    return -1; // Title is valid
+    return -1;
 }
 int checkDescription(char* raw_description) {
     int length = strlen(raw_description);
