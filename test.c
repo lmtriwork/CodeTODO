@@ -63,6 +63,7 @@ void getTimeFromAdd(char* command, char* out_time) {
     }
 }
 
+
 int checkTitle(char * raw_title) {
     // Check if the title length is within the allowed limit
     if (strlen(raw_title) > MAX_LENGTH_TITLE) {
